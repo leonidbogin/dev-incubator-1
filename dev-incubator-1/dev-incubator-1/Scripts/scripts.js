@@ -5,18 +5,18 @@ function Diagram() {
     myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [], //Подписи оси x
+            labels: [],
             datasets: [{
-                label: 'f(x)', //Метка
-                data: [], //Данные
-                borderColor: '#3e95cd', //Цвет
-                borderWidth: 1.5, //Толщина линии
-                fill: false //Не заполнять под графиком
+                label: 'f(x)',
+                data: [],
+                borderColor: '#3e95cd',
+                borderWidth: 1.5,
+                fill: false
             }]
         },
         options: {
             responsive:
-                false, //Вписывать в размер canvas
+                false,
             scales: {
                 xAxes: [{
                     display: true
@@ -62,11 +62,9 @@ function StartPlot() {
 }
 
 function SendData(RangeFrom, RangeTo, Step, A, B, C) {
-    //form encoded data
     var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
     var data = $('form').serialize();
 
-    //JSON data
     var dataType = 'application/json; charset=utf-8';
     var data = {
         RangeFrom: RangeFrom,
