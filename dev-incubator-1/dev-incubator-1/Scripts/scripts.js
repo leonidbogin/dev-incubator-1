@@ -1,14 +1,8 @@
-var RangeFrom = -10;
-var RangeTo = 10;
-var Step = 1;
-var A = 5;
-var B = 5;
-var C = 16;
-var RangeMargin = Math.abs(RangeTo - RangeFrom) / 2
+var myChart;
 
-function Diagram () {
+function Diagram() {
     var ctx = document.getElementById("myChart");
-    var myChart = new Chart (ctx, {
+    myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: [], //Подписи оси x
@@ -22,7 +16,7 @@ function Diagram () {
         },
         options: {
             responsive:
-             false, //Вписывать в размер canvas
+                false, //Вписывать в размер canvas
             scales: {
                 xAxes: [{
                     display: true
@@ -37,17 +31,35 @@ function Diagram () {
         }
     });
 
+    //StartPlot();
+}
+
+function ChartCalc() {
+    var RangeFrom = Number.parseInt(document.getElementsByName('inputFrom')[0].value);
+    var RangeTo = Number.parseInt(document.getElementsByName('inputTo')[0].value);
+    var Step = Number.parseInt(document.getElementsByName('inputStep')[0].value);
+
     for (var x = RangeFrom; x <= RangeTo; x += Step) {
-        myChart.data.labels.push(''+x);
+        myChart.data.labels.push('' + x);
         myChart.data.datasets[0].data.push(f(x));
-    }
-    //Обновляем
-    myChart.update();
-  
-    function f(x) { //Вычисление нужной функции
-        return A*Math.pow(x,2) + B*x + C;
     }
 }
 
-window.addEventListener("load", Diagram); 
-  
+function f(x) {
+    var A = Number.parseInt(document.getElementsByName('inputA')[0].value);
+    var B = Number.parseInt(document.getElementsByName('inputB')[0].value);
+    var C = Number.parseInt(document.getElementsByName('inputC')[0].value);
+    return A * Math.pow(x, 2) + B * x + C;
+}
+
+function ChartUpdate() {
+    myChart.update();
+}
+
+function StartPlot() {
+    Diagram();
+    ChartCalc();
+    ChartUpdate();
+}
+
+window.addEventListener("load", Diagram);
