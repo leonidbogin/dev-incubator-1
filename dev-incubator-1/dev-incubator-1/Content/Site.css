@@ -65,17 +65,17 @@ body {
 }
 
 .input-block table td {
-    border-right: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
+    border-right: 1px solid #f9f9f9;
+    border-bottom: 1px solid #f9f9f9;
     min-width: 30px;
     white-space: nowrap;
 }
 
-    .input-block table td:first-child {
-        padding-left: 2px;
-        padding-right: 5px;
-        text-align: left;
-    }
+.input-block table td:first-child {
+    padding-left: 2px;
+    padding-right: 5px;
+    text-align: left;
+}
 
 .input-block input {
     width: 100%;

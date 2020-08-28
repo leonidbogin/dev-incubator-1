@@ -14,5 +14,10 @@ namespace dev_incubator_1.Controllers
         {
             return View();
         }
+
+        public JsonResult SendDataJson(UserData userData)
+        {
+            return Json(userData);
+        }
     }
 }
