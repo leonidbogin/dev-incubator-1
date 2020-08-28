@@ -82,9 +82,15 @@ function SendData(RangeFrom, RangeTo, Step, A, B, C) {
         contentType: dataType,
         data: JSON.stringify(data),
         success: function (points) {
-            Diagram();
-            ChartPaint(points);
-            ChartUpdate();
+            if (!points) {
+                Diagram();
+                alert("Server error\nAn error occurred on the server due to incorrectly entered data.");
+            }
+            else {
+                Diagram();
+                ChartPaint(points);
+                ChartUpdate();
+            }
         }
     });
 }

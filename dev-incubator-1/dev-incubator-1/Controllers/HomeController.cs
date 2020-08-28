@@ -18,7 +18,9 @@ namespace dev_incubator_1.Controllers
 
         public JsonResult SendDataJson(UserData userData)
         {
-            return Json(CalcChartPoints.GetPoints(userData));
+            if (UserDataValidation.Valadation(userData))
+                return Json(CalcChartPoints.GetPoints(userData));
+            else return Json(false);
         }
     }
 }

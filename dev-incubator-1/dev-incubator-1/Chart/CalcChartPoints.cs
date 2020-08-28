@@ -11,12 +11,12 @@ namespace dev_incubator_1.Chart
         public static List<Point> GetPoints(UserData userData)
         {
             List<Point> points = new List<Point>();
-            for (double x = userData.RangeFrom; x <= userData.RangeTo; x += userData.Step)
+            for (double x = userData.RangeFrom.Value; x <= userData.RangeTo; x += userData.Step.Value)
             {
                 points.Add(new Point()
                 {
                     PointX = x,
-                    PointY = Func(x, userData.A, userData.B, userData.C)
+                    PointY = Func(x, userData.A.Value, userData.B.Value, userData.C.Value)
                 });
             }
             return points;
