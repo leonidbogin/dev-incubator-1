@@ -38,18 +38,18 @@ function ChartCalc() {
     var RangeFrom = Number.parseInt(document.getElementsByName('inputFrom')[0].value);
     var RangeTo = Number.parseInt(document.getElementsByName('inputTo')[0].value);
     var Step = Number.parseInt(document.getElementsByName('inputStep')[0].value);
-
-    for (var x = RangeFrom; x <= RangeTo; x += Step) {
-        myChart.data.labels.push('' + x);
-        myChart.data.datasets[0].data.push(f(x));
-    }
-}
-
-function f(x) {
     var A = Number.parseInt(document.getElementsByName('inputA')[0].value);
     var B = Number.parseInt(document.getElementsByName('inputB')[0].value);
     var C = Number.parseInt(document.getElementsByName('inputC')[0].value);
-    return A * Math.pow(x, 2) + B * x + C;
+
+    for (var x = RangeFrom; x <= RangeTo; x += Step) {
+        myChart.data.labels.push('' + x);
+        myChart.data.datasets[0].data.push(f(x, A, B, C));
+    }
+}
+
+function f(x, a, b, c) {
+    return a * Math.pow(x, 2) + b * x + c;
 }
 
 function ChartUpdate() {
