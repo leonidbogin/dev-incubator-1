@@ -1,24 +1,82 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html, body {
+    width: 100%;
+    height: 100%;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    background: #4d4d4d;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.wrapper {
+    float: none;
+    margin: 0 auto;
+    width: 750px;
+    height: 100%;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.content {
+    margin-top: 50px;
+    width: 100%;
+    height: 400px;
+    background: #fff;
+}
+
+.chart {
+    float: left;
+    width: 400px;
+    height: 400px;
+    padding: 20px 5px 5px 10px;
+    box-sizing: border-box;
+}
+
+#myChart {
+    width: 100%;
+    height: 100%;
+}
+
+.input-wrapper {
+    float: left;
+    width: 350px;
+    height: 400px;
+    box-sizing: border-box;
+}
+
+.input-block {
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    margin: 0 auto;
+    float: none;
+    width: 265px;
+    margin-top: 25px;
+}
+
+.input-block table {
+    border: 2px solid #4d4d4d;
+    width: 265px;
+}
+
+.input-block button {
+    margin-top: 15px;
+    width: 100%;
+    height: 30px;
+}
+
+.input-block table td, .input-block input {
+    text-align: center;
+}
+
+.input-block table td {
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    min-width: 30px;
+    white-space: nowrap;
+}
+
+    .input-block table td:first-child {
+        padding-left: 2px;
+        padding-right: 5px;
+        text-align: left;
+    }
+
+.input-block input {
+    width: 100%;
 }
