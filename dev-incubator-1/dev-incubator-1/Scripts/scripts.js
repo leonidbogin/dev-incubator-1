@@ -27,17 +27,18 @@ function Diagram() {
             },
             legend: {
                 display: false,
-            }
+            },
+            tooltips: { enabled: false },
+            hover: { mode: null },
+            events: []
         }
     });
-
-    //StartPlot();
 }
 
-function ChartCalc(RangeFrom, RangeTo, Step, A, B, C) {
-    for (var x = RangeFrom; x <= RangeTo; x += Step) {
-        myChart.data.labels.push('' + x);
-        myChart.data.datasets[0].data.push(f(x, A, B, C));
+function ChartPaint(points) {
+    for (var i = 0; i < points.length; i++) {
+        myChart.data.labels.push('' + points[i].PointX);
+        myChart.data.datasets[0].data.push(points[i].PointY);
     }
 }
 
@@ -58,9 +59,6 @@ function StartPlot() {
     var C = Number.parseInt(document.getElementsByName('inputC')[0].value);
 
     SendData(RangeFrom, RangeTo, Step, A, B, C);
-    Diagram();
-    ChartCalc(RangeFrom, RangeTo, Step, A, B, C);
-    ChartUpdate();
 }
 
 function SendData(RangeFrom, RangeTo, Step, A, B, C) {
@@ -79,17 +77,16 @@ function SendData(RangeFrom, RangeTo, Step, A, B, C) {
         C: C
     }
 
-    console.log(data);
-    console.log('Submitting form...');
     $.ajax({
         type: 'POST',
         url: '/Home/SendDataJson',
         dataType: 'json',
         contentType: dataType,
         data: JSON.stringify(data),
-        success: function (result) {
-            console.log('Data received: ');
-            console.log(result);
+        success: function (points) {
+            Diagram();
+            ChartPaint(points);
+            ChartUpdate();
         }
     });
 }

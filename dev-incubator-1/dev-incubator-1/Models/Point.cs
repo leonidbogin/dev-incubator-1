@@ -9,7 +9,7 @@ namespace dev_incubator_1.Models
     {
         public int PointId { get; set; }
         public UserData ChartId { get; set; }
-        public int PointX { get; set; }
-        public int PointY { get; set; }
+        public double PointX { get; set; }
+        public double PointY { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using dev_incubator_1.Models;
+﻿using dev_incubator_1.Chart;
+using dev_incubator_1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace dev_incubator_1.Controllers
 
         public JsonResult SendDataJson(UserData userData)
         {
-            return Json(userData);
+            return Json(CalcChartPoints.GetPoints(userData));
         }
     }
 }
