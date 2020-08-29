@@ -1,5 +1,20 @@
 var myChart;
 
+function isFloat_number(num) {
+    return Number(num) === num && num % 1 !== 0;
+}
+
+class UserData {
+    constructor(rangeFrom, rangeTo, step, a, b, c) {
+        this.RangeFrom = Number(rangeFrom);
+        this.RangeTo = Number(rangeTo);
+        this.Step = parseFloat(step.replace(/,/, '.'));
+        this.A = Number(a);
+        this.B = Number(b);
+        this.C = Number(c);
+    }
+}
+
 function Diagram() {
     var ctx = document.getElementById("myChart");
     myChart = new Chart(ctx, {
@@ -50,29 +65,82 @@ function ChartUpdate() {
     myChart.update();
 }
 
-function StartPlot() {
-    var RangeFrom = Number.parseInt(document.getElementsByName('inputFrom')[0].value);
-    var RangeTo = Number.parseInt(document.getElementsByName('inputTo')[0].value);
-    var Step = Number.parseFloat(document.getElementsByName('inputStep')[0].value);
-    var A = Number.parseInt(document.getElementsByName('inputA')[0].value);
-    var B = Number.parseInt(document.getElementsByName('inputB')[0].value);
-    var C = Number.parseInt(document.getElementsByName('inputC')[0].value);
-
-    SendData(RangeFrom, RangeTo, Step, A, B, C);
+function DataValidation(userData) {
+    //console.log(Number.isInteger(userData.A));
+    var result = true;
+    var rangeCorrect = true;
+    if (!Number.isInteger(userData.A)) {
+        ShowError("The leading coefficient field is not a number");
+        result =  false;
+    } 
+    if (!Number.isInteger(userData.B)) {
+        ShowError("The second coefficient field is not a number");
+        result = false;
+    } 
+    if (!Number.isInteger(userData.C)) {
+        ShowError("The free member field is not a number");
+        result = false;
+    } 
+    if (!Number.isInteger(userData.Step) && !isFloat_number(userData.Step)) {
+        ShowError("Step field is not a number");
+        result = false;
+    } else {
+        document.getElementsByName('inputStep')[0].value = userData.Step;
+        if (userData.Step <= 0) {
+            ShowError("Step cannot be less than zero");
+            result = false;
+        }
+    }
+    if (!Number.isInteger(userData.RangeFrom)) {
+        ShowError("Range start field is not a number");
+        result = false;
+        rangeCorrect = false;
+    } 
+    if (!Number.isInteger(userData.RangeTo)) {
+        ShowError("End of range field is not a number");
+        result = false;
+        rangeCorrect = false;
+    }
+    if (rangeCorrect && (userData.RangeTo - userData.RangeFrom < 0)) {
+        ShowError("Range start point is greater than end point");
+        result = false;
+    }
+    return result;
 }
 
-function SendData(RangeFrom, RangeTo, Step, A, B, C) {
+function ShowError(text) {
+    console.log(text);
+}
+
+function StartPlot() {
+    let userData = new UserData(
+        document.getElementsByName('inputFrom')[0].value, //Number.parseInt(
+        document.getElementsByName('inputTo')[0].value,
+        document.getElementsByName('inputStep')[0].value, //Number.parseFloat(
+        document.getElementsByName('inputA')[0].value,
+        document.getElementsByName('inputB')[0].value,
+        document.getElementsByName('inputC')[0].value);
+
+    if (DataValidation(userData)) {
+        SendData(userData);
+    } else {
+        Diagram();
+    }
+    
+}
+
+function SendData(userData) {
     var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
     var data = $('form').serialize();
 
     var dataType = 'application/json; charset=utf-8';
     var data = {
-        RangeFrom: RangeFrom,
-        RangeTo: RangeTo,
-        Step: Step,
-        A: A,
-        B: B,
-        C: C
+        RangeFrom: userData.RangeFrom,
+        RangeTo: userData.RangeTo,
+        Step: userData.Step,
+        A: userData.A,
+        B: userData.B,
+        C: userData.C
     }
 
     $.ajax({
