@@ -6,7 +6,7 @@ using System.Web;
 
 namespace dev_incubator_1.Chart
 {
-    public static class UserDataValidation
+    public static class DataValidation
     {
         public static bool Valadation(UserData userData)
         {

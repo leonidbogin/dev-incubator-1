@@ -6,7 +6,7 @@ using System.Web;
 
 namespace dev_incubator_1.Chart
 {
-    public static class CalcChartPoints
+    public static class CalcPoints
     {
         public static List<Point> GetPoints(UserData userData)
         {
