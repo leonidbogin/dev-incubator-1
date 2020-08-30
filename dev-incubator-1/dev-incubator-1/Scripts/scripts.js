@@ -114,7 +114,7 @@ function ClearError(text) {
     while (list.firstChild) {
         list.removeChild(list.firstChild);
     }
-    var listblock = document.getElementsByClassName('validation')[0];
+    var listblock = document.getElementsByClassName('message--error')[0];
     listblock.classList.add("hide");
 }
 
@@ -123,7 +123,7 @@ function ShowError(text) {
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(text));
     list.appendChild(li);
-    var listblock = document.getElementsByClassName('validation')[0];
+    var listblock = document.getElementsByClassName('message--error')[0];
     listblock.classList.remove("hide");
 }
 

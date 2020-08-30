@@ -20,6 +20,8 @@ body {
     width: 100%;
     height: 400px;
     background: #fff;
+    border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .chart {
@@ -82,53 +84,82 @@ body {
     width: 100%;
 }
 
-.info, .success, .warning, .error, .validation {
-    border: 1px solid;
-    margin: 10px 0px;
-    padding: 15px 10px 5px 70px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    float: left;
-    width: 100%;
-}
-
-.info ul, .success ul, .warning ul, .error ul, .validation ul {
-    list-style: disc;
-}
-
-.info {
-    color: #00529B;
-    background-color: #BDE5F8;
-    background-image: url('Img/info.png');
-}
-
-.success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-    background-image: url('Img/success.png');
-}
-
-.warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
-    background-image: url('Img/warning.png');
-}
-
-.error {
-    color: #D8000C;
-    background-color: #FFBABA;
-    background-image: url('Img/error.png');
-}
-
-.validation {
-    color: #D63301;
-    background-color: #FFCCBA;
-    background-image: url('Img/error.png');/*validation.png*/
-    background-position-x: 13px;
-} 
-
 .hide {
     display: none;
+}
+
+.message {
+    background-color: white;
+    width: 100%;
+    padding: 1em 1em 1em 1.5em;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-right-width: 6px;
+    border-right-style: solid;
+    border-radius: 3px;
+    position: relative;
+    line-height: 1.5;
+    margin: 30px 0 20px 0;
+    float: left;
+}
+
+.message ul {
+    list-style: disc;
+    margin: 0 0 0 15px;
+}
+
+.message + .message {
+    margin-top: 2em;
+}
+
+.message:before {
+    color: white;
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    top: 1em;
+    left: -3px;
+    border-radius: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.message p {
+    margin: 0 0 1em;
+}
+
+.message p:last-child {
+    margin-bottom: 0;
+}
+
+.message--error {
+    border-left-color: firebrick;
+    border-right-color: firebrick;
+    color: firebrick;
+}
+
+.message--error:before {
+    background-color: firebrick;
+    content: "‼";
+}
+
+.message--warning {
+    border-left-color: darkorange;
+}
+
+.message--warning:before {
+    background-color: darkorange;
+    content: "!";
+}
+
+.message--success {
+    border-left-color: darkolivegreen;
+}
+
+.message--success:before {
+    background-color: darkolivegreen;
+    content: "✔";
 }
