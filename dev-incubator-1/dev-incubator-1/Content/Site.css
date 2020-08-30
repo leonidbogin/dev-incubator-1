@@ -22,25 +22,23 @@ body {
     background: #fff;
     border-radius: 3px;
     box-sizing: border-box;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
 }
 
 .chart {
     float: left;
-    width: 400px;
+    width: 420px;
     height: 400px;
-    padding: 20px 5px 5px 10px;
+    padding: 21px 0 9px 0;
     box-sizing: border-box;
-}
-
-#myChart {
-    width: 100%;
-    height: 100%;
 }
 
 .input-wrapper {
     float: left;
-    width: 350px;
-    height: 400px;
+    width: 330px;
+    height: auto;
     box-sizing: border-box;
 }
 

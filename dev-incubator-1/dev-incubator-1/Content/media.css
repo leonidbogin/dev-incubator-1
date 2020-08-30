@@ -1,0 +1,46 @@
+﻿@media screen and (max-width: 790px) {
+    .wrapper {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .content {
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .input-wrapper {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .chart {
+        width: 100%;
+    }
+
+    #myChart {
+        float: none;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .wrapper {
+        padding: 0;
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -ms-transition: all .5s;
+    }
+    .content {
+        
+    }
+    .chart {
+        overflow: auto;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .wrapper {
+        width: 290px;
+    }
+}
