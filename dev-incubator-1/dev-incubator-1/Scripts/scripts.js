@@ -1,9 +1,5 @@
 var myChart;
 
-function isFloat_number(num) {
-    return Number(num) === num && num % 1 !== 0;
-}
-
 class UserData {
     constructor(rangeFrom, rangeTo, step, a, b, c) {
         this.RangeFrom = Number(rangeFrom);
@@ -15,6 +11,7 @@ class UserData {
     }
 }
 
+//Creating a graph on the page
 function CreateDiagram() {
     var ctx = document.getElementById("myChart");
     myChart = new Chart(ctx, {
@@ -50,6 +47,7 @@ function CreateDiagram() {
     });
 }
 
+//Parsing points into a chart
 function ChartPaint(points) {
     for (var i = 0; i < points.length; i++) {
         myChart.data.labels.push('' + points[i].PointX);
@@ -57,58 +55,58 @@ function ChartPaint(points) {
     }
 }
 
-function f(x, a, b, c) {
-    return a * Math.pow(x, 2) + b * x + c;
-}
-
+//Updating data on a graph
 function ChartUpdate() {
     myChart.update();
 }
 
+//Checking data on the client (Errors are displayed on the page)
 function DataValidation(userData) {
-    ClearError();
+    ClearError(); //Clearing all errors on the page
     var result = true;
-    var rangeCorrect = true;
-    if (!Number.isInteger(userData.A)) {
+    if (!Number.isInteger(userData.A)) { //Field validation A
         ShowError("The leading coefficient field is not a number");
         document.getElementsByName('inputA')[0].classList.add("error");
         result = false;
     }
-    if (!Number.isInteger(userData.B)) {
+    if (!Number.isInteger(userData.B)) { //Field validation B
         ShowError("The second coefficient field is not a number");
         document.getElementsByName('inputB')[0].classList.add("error");
         result = false;
     }
-    if (!Number.isInteger(userData.C)) {
+    if (!Number.isInteger(userData.C)) { //Field validation C
         ShowError("The free member field is not a number");
         document.getElementsByName('inputC')[0].classList.add("error");
         result = false;
     }
     if (!Number.isInteger(userData.Step) && !isFloat_number(userData.Step)) {
+        //Field validation Step 
         ShowError("Step field is not a number");
         document.getElementsByName('step')[0].classList.add("error");
         result = false;
     } else {
-        document.getElementsByName('step')[0].value = userData.Step;
+        document.getElementsByName('step')[0].value = userData.Step; //Update field Step
+        //Ñheck the step field for a value greater than zero
         if (userData.Step <= 0) {
             ShowError("Step cannot be less than zero");
             document.getElementsByName('step')[0].classList.add("error");
             result = false;
         }
     }
-    if (!Number.isInteger(userData.RangeFrom)) {
+    var rangeCorrect = true;
+    if (!Number.isInteger(userData.RangeFrom)) { //Field validation RangeFrom
         ShowError("Range start field is not a number");
         document.getElementsByName('rangeFrom')[0].classList.add("error");
         result = false;
         rangeCorrect = false;
     }
-    if (!Number.isInteger(userData.RangeTo)) {
+    if (!Number.isInteger(userData.RangeTo)) { //Field validation RangeTo
         ShowError("End of range field is not a number");
         document.getElementsByName('rangeTo')[0].classList.add("error");
         result = false;
         rangeCorrect = false;
     }
-    if (rangeCorrect && (userData.RangeTo - userData.RangeFrom < 0)) {
+    if (rangeCorrect && (userData.RangeTo - userData.RangeFrom < 0)) { //Field validation RangeFrom and RangeTo
         ShowError("Range start point is greater than end point");
         document.getElementsByName('rangeFrom')[0].classList.add("error");
         document.getElementsByName('rangeTo')[0].classList.add("error");
@@ -117,6 +115,7 @@ function DataValidation(userData) {
     return result;
 }
 
+//Clearing all errors on the page
 function ClearError(text) {
     var list = document.getElementsByClassName('validation-list-error')[0];
     while (list.firstChild) {
@@ -126,6 +125,7 @@ function ClearError(text) {
     document.querySelectorAll('input.error').forEach(n => n.classList.remove('error'));
 }
 
+//Show error text on page
 function ShowError(text) {
     var list = document.getElementsByClassName('validation-list-error')[0];
     var li = document.createElement("li");
@@ -134,23 +134,7 @@ function ShowError(text) {
     document.getElementsByClassName('message--error')[0].classList.remove("hide");
 }
 
-function StartPlot() {
-    let userData = new UserData(
-        document.getElementsByName('rangeFrom')[0].value,
-        document.getElementsByName('rangeTo')[0].value,
-        document.getElementsByName('step')[0].value,
-        document.getElementsByName('inputA')[0].value,
-        document.getElementsByName('inputB')[0].value,
-        document.getElementsByName('inputC')[0].value);
-
-    if (DataValidation(userData)) {
-        SendData(userData);
-    } else {
-        CreateDiagram();
-    }
-
-}
-
+//Sending and receiving ajax request
 function SendData(userData) {
     var dataType = 'application/x-www-form-urlencoded; charset=utf-8';
     var data = $('form').serialize();
@@ -172,7 +156,7 @@ function SendData(userData) {
         contentType: dataType,
         data: JSON.stringify(data),
         success: function (points) {
-            if (!points) {
+            if (!points) { //If returns false instead of points 
                 CreateDiagram();
                 alert("Server error\nAn error occurred on the server due to incorrectly entered data.");
             }
@@ -183,6 +167,28 @@ function SendData(userData) {
             }
         }
     });
+}
+
+//Checking if a number is Float
+function isFloat_number(num) {
+    return Number(num) === num && num % 1 !== 0;
+}
+
+//Main function triggered on form submission
+function StartPlot() {
+    let userData = new UserData(
+        document.getElementsByName('rangeFrom')[0].value,
+        document.getElementsByName('rangeTo')[0].value,
+        document.getElementsByName('step')[0].value,
+        document.getElementsByName('inputA')[0].value,
+        document.getElementsByName('inputB')[0].value,
+        document.getElementsByName('inputC')[0].value);
+
+    if (DataValidation(userData)) {
+        SendData(userData);
+    } else {
+        CreateDiagram();
+    }
 }
 
 window.addEventListener("load", CreateDiagram);

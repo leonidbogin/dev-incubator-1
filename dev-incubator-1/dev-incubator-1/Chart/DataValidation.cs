@@ -8,6 +8,7 @@ namespace dev_incubator_1.Chart
 {
     public static class DataValidation
     {
+        //Simple server side validation (return true/false)
         public static bool Valadation(UserData userData)
         {
             if (!userData.A.HasValue

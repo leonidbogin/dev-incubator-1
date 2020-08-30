@@ -12,6 +12,7 @@ namespace dev_incubator_1.Controllers
     public class HomeController : Controller
     {
         Context db = new Context();
+
         public ActionResult Index()
         {
             return View();

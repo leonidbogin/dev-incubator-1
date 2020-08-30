@@ -9,7 +9,6 @@ namespace dev_incubator_1.Models
     public class Context : DbContext
     {
         public DbSet<Point> Points { get; set; }
-
         public DbSet<UserData> UserDatas { get; set; }
     }
 }
