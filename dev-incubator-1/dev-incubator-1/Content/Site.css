@@ -168,3 +168,31 @@ body {
     background-color: darkolivegreen;
     content: "✔";
 }
+
+.result table {
+    border: 2px solid #4d4d4d;
+    width: 100%;
+}
+
+.result th {
+    text-align: center;
+    font-weight: 600;
+}
+
+.result td, .result th {
+    border-right: 1px solid #4d4d4d;
+    border-bottom: 1px solid #4d4d4d;
+    min-width: 30px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.result th:first-child {
+    width: 80px;
+}
+
+.content.result {
+    margin-top: 50px;
+    width: 100%;
+    height: auto;
+}

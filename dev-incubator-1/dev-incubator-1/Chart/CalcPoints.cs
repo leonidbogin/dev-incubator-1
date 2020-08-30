@@ -15,9 +15,10 @@ namespace dev_incubator_1.Chart
             {
                 points.Add(new Point()
                 {
+                    ChartId = userData,
                     PointX = x,
                     PointY = Func(x, userData.A.Value, userData.B.Value, userData.C.Value)
-                });
+                }); ;
             }
             return points;
         }

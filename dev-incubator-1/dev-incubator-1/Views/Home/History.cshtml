@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "History - ";
+}
+    <div class="wrapper">
+        <div class="content result">
+            <table>
+                <tr>
+                    <th>UserDataId</th>
+                    <th>RangeFrom</th>
+                    <th>RangeTo</th>
+                    <th>Step</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                </tr>
+                @foreach (var d in ViewBag.UserDatas)
+                {
+                    <tr>
+                        <td><p>@d.UserDataId</p></td>
+                        <td><p>@d.RangeFrom</p></td>
+                        <td><p>@d.RangeTo</p></td>
+                        <td><p>@d.Step</p></td>
+                        <td><p>@d.A</p></td>
+                        <td><p>@d.B</p></td>
+                        <td><p>@d.C</p></td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="content result">
+            <table>
+                <tr>
+                    <th>PointId</th>
+                    <th>ChartId</th>
+                    <th>PointX</th>
+                    <th>PointY</th>
+                </tr>
+                @foreach (var p in ViewBag.Points)
+                {
+                    <tr>
+                        <td><p>@p.PointId</p></td>
+                        <td><p>@p.ChartId.UserDataId</p></td>
+                        <td><p>@p.PointX</p></td>
+                        <td><p>@p.PointY</p></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
