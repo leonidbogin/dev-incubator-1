@@ -15,7 +15,7 @@ class UserData {
     }
 }
 
-function Diagram() {
+function CreateDiagram() {
     var ctx = document.getElementById("myChart");
     myChart = new Chart(ctx, {
         type: 'line',
@@ -66,7 +66,6 @@ function ChartUpdate() {
 }
 
 function DataValidation(userData) {
-    //console.log(Number.isInteger(userData.A));
     ClearError();
     var result = true;
     var rangeCorrect = true;
@@ -129,9 +128,9 @@ function ShowError(text) {
 
 function StartPlot() {
     let userData = new UserData(
-        document.getElementsByName('inputFrom')[0].value, //Number.parseInt(
-        document.getElementsByName('inputTo')[0].value,
-        document.getElementsByName('inputStep')[0].value, //Number.parseFloat(
+        document.getElementsByName('rangeFrom')[0].value,
+        document.getElementsByName('rangeTo')[0].value,
+        document.getElementsByName('step')[0].value, 
         document.getElementsByName('inputA')[0].value,
         document.getElementsByName('inputB')[0].value,
         document.getElementsByName('inputC')[0].value);
@@ -166,11 +165,11 @@ function SendData(userData) {
         data: JSON.stringify(data),
         success: function (points) {
             if (!points) {
-                Diagram();
+                CreateDiagram();
                 alert("Server error\nAn error occurred on the server due to incorrectly entered data.");
             }
             else {
-                Diagram();
+                CreateDiagram();
                 ChartPaint(points);
                 ChartUpdate();
             }
@@ -178,4 +177,4 @@ function SendData(userData) {
     });
 }
 
-window.addEventListener("load", Diagram);
+window.addEventListener("load", CreateDiagram);

@@ -1,72 +1,68 @@
 ﻿@{
 
 }
-    <div class="wrapper">
-        <div class="content">
-            <div class="chart">
-                <canvas id="myChart" width="400" height="400"></canvas>
-            </div>
-            <div class="input-wrapper">
-                <form method="post">
-                    <div class="input-block">
-                        <table>
-                            <tr>
-                                <td>Function:</td>
-                                <td>y =</td>
-                                <td><input type="text" name="inputA" value="1"></td>
-                                <td>x^2 +</td>
-                                <td><input type="text" name="inputB" value="1"></td>
-                                <td>x +</td>
-                                <td><input type="text" name="inputC" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Step:</td>
-                                <td><input type="text" name="inputStep" value="1"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>From:</td>
-                                <td><input type="text" name="inputFrom" value="-10"></td>
-                                <td>to</td>
-                                <td><input type="text" name="inputTo" value="10"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                        <button type="button" onclick="StartPlot()">Plot</button>
-                    </div>
-                </form>
-            </div>
+<div class="wrapper">
+    <div class="content">
+        <div class="chart">
+            <canvas id="myChart" width="400" height="400"></canvas>
         </div>
-        @*<div class="validation hide">
-            
-        </div>*@
-        <div class="message  message--error hide">
-            <ul class="validation-list-error">
-            </ul>
+        <div class="input-wrapper">
+            <form method="post">
+                <div class="input-block">
+                    <table>
+                        <tr>
+                            <td>Function:</td>
+                            <td>y =</td>
+                            <td><input type="text" name="inputA" value="1"></td>
+                            <td>x^2 +</td>
+                            <td><input type="text" name="inputB" value="1"></td>
+                            <td>x +</td>
+                            <td><input type="text" name="inputC" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Step:</td>
+                            <td><input type="text" name="step" value="1"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>From:</td>
+                            <td><input type="text" name="rangeFrom" value="-10"></td>
+                            <td>to</td>
+                            <td><input type="text" name="rangeTo" value="10"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <button type="button" onclick="StartPlot()">Plot</button>
+                </div>
+            </form>
         </div>
-
     </div>
+    <div class="message  message--error hide">
+        <ul class="validation-list-error">
+        </ul>
+    </div>
+</div>
