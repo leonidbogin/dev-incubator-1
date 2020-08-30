@@ -71,38 +71,47 @@ function DataValidation(userData) {
     var rangeCorrect = true;
     if (!Number.isInteger(userData.A)) {
         ShowError("The leading coefficient field is not a number");
-        result =  false;
-    } 
+        document.getElementsByName('inputA')[0].classList.add("error");
+        result = false;
+    }
     if (!Number.isInteger(userData.B)) {
         ShowError("The second coefficient field is not a number");
+        document.getElementsByName('inputB')[0].classList.add("error");
         result = false;
-    } 
+    }
     if (!Number.isInteger(userData.C)) {
         ShowError("The free member field is not a number");
+        document.getElementsByName('inputC')[0].classList.add("error");
         result = false;
-    } 
+    }
     if (!Number.isInteger(userData.Step) && !isFloat_number(userData.Step)) {
         ShowError("Step field is not a number");
+        document.getElementsByName('step')[0].classList.add("error");
         result = false;
     } else {
-        document.getElementsByName('inputStep')[0].value = userData.Step;
+        document.getElementsByName('step')[0].value = userData.Step;
         if (userData.Step <= 0) {
             ShowError("Step cannot be less than zero");
+            document.getElementsByName('step')[0].classList.add("error");
             result = false;
         }
     }
     if (!Number.isInteger(userData.RangeFrom)) {
         ShowError("Range start field is not a number");
+        document.getElementsByName('rangeFrom')[0].classList.add("error");
         result = false;
         rangeCorrect = false;
-    } 
+    }
     if (!Number.isInteger(userData.RangeTo)) {
         ShowError("End of range field is not a number");
+        document.getElementsByName('rangeTo')[0].classList.add("error");
         result = false;
         rangeCorrect = false;
     }
     if (rangeCorrect && (userData.RangeTo - userData.RangeFrom < 0)) {
         ShowError("Range start point is greater than end point");
+        document.getElementsByName('rangeFrom')[0].classList.add("error");
+        document.getElementsByName('rangeTo')[0].classList.add("error");
         result = false;
     }
     return result;
@@ -113,8 +122,8 @@ function ClearError(text) {
     while (list.firstChild) {
         list.removeChild(list.firstChild);
     }
-    var listblock = document.getElementsByClassName('message--error')[0];
-    listblock.classList.add("hide");
+    document.getElementsByClassName('message--error')[0].classList.add("hide");
+    document.querySelectorAll('input.error').forEach(n => n.classList.remove('error'));
 }
 
 function ShowError(text) {
@@ -122,15 +131,14 @@ function ShowError(text) {
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(text));
     list.appendChild(li);
-    var listblock = document.getElementsByClassName('message--error')[0];
-    listblock.classList.remove("hide");
+    document.getElementsByClassName('message--error')[0].classList.remove("hide");
 }
 
 function StartPlot() {
     let userData = new UserData(
         document.getElementsByName('rangeFrom')[0].value,
         document.getElementsByName('rangeTo')[0].value,
-        document.getElementsByName('step')[0].value, 
+        document.getElementsByName('step')[0].value,
         document.getElementsByName('inputA')[0].value,
         document.getElementsByName('inputB')[0].value,
         document.getElementsByName('inputC')[0].value);
@@ -138,9 +146,9 @@ function StartPlot() {
     if (DataValidation(userData)) {
         SendData(userData);
     } else {
-        Diagram();
+        CreateDiagram();
     }
-    
+
 }
 
 function SendData(userData) {
