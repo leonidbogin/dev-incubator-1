@@ -67,6 +67,7 @@ function ChartUpdate() {
 
 function DataValidation(userData) {
     //console.log(Number.isInteger(userData.A));
+    ClearError();
     var result = true;
     var rangeCorrect = true;
     if (!Number.isInteger(userData.A)) {
@@ -108,8 +109,22 @@ function DataValidation(userData) {
     return result;
 }
 
+function ClearError(text) {
+    var list = document.getElementsByClassName('validation-list-error')[0];
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    var listblock = document.getElementsByClassName('validation')[0];
+    listblock.classList.add("hide");
+}
+
 function ShowError(text) {
-    console.log(text);
+    var list = document.getElementsByClassName('validation-list-error')[0];
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(text));
+    list.appendChild(li);
+    var listblock = document.getElementsByClassName('validation')[0];
+    listblock.classList.remove("hide");
 }
 
 function StartPlot() {
