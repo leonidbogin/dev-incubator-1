@@ -2,8 +2,12 @@
     ViewBag.Title = "History - ";
 }
     <div class="wrapper">
+        <button type="button" class="back" onclick="document.location.href = '/Home/Index'">Back</button>
         <div class="content result">
             <table>
+                <tr>
+                    <th colspan="7">Past entered parameters</th>
+                </tr>
                 <tr>
                     <th>UserDataId</th>
                     <th>RangeFrom</th>
@@ -16,19 +20,22 @@
                 @foreach (var d in ViewBag.UserDatas)
                 {
                     <tr>
-                        <td><p>@d.UserDataId</p></td>
-                        <td><p>@d.RangeFrom</p></td>
-                        <td><p>@d.RangeTo</p></td>
-                        <td><p>@d.Step</p></td>
-                        <td><p>@d.A</p></td>
-                        <td><p>@d.B</p></td>
-                        <td><p>@d.C</p></td>
+                        <td>@d.UserDataId</td>
+                        <td>@d.RangeFrom</td>
+                        <td>@d.RangeTo</td>
+                        <td>@d.Step</td>
+                        <td>@d.A</td>
+                        <td>@d.B</td>
+                        <td>@d.C</td>
                     </tr>
                 }
             </table>
         </div>
         <div class="content result">
             <table>
+                <tr>
+                    <th colspan="4">Past points</th>
+                </tr>
                 <tr>
                     <th>PointId</th>
                     <th>ChartId</th>
@@ -38,10 +45,10 @@
                 @foreach (var p in ViewBag.Points)
                 {
                     <tr>
-                        <td><p>@p.PointId</p></td>
-                        <td><p>@p.ChartId.UserDataId</p></td>
-                        <td><p>@p.PointX</p></td>
-                        <td><p>@p.PointY</p></td>
+                        <td>@p.PointId</td>
+                        <td>@p.ChartId.UserDataId</td>
+                        <td>@p.PointX</td>
+                        <td>@p.PointY</td>
                     </tr>
                 }
             </table>

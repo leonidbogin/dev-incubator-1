@@ -48,13 +48,13 @@ body {
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
     margin: 0 auto;
     float: none;
-    width: 265px;
+    width: 280px;
     margin-top: 25px;
 }
 
 .input-block table {
-    border: 2px solid #4d4d4d;
-    width: 265px;
+    border: 2px solid #f2f2f2;
+    width: 100%;
 }
 
 .input-block button {
@@ -63,25 +63,58 @@ body {
     height: 30px;
 }
 
+.input-block table tr{
+    height: 40px;
+}
+
 .input-block table td, .input-block input {
     text-align: center;
 }
 
 .input-block table td {
-    border-right: 1px solid #f9f9f9;
-    border-bottom: 1px solid #f9f9f9;
+    border-bottom: 1px solid #f2f2f2;
     min-width: 30px;
     white-space: nowrap;
+    vertical-align: middle;
+}
+
+.input-block table td.text {
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 .input-block table td:first-child {
-    padding-left: 2px;
+    border-right: 1px solid #f2f2f2;
+}
+
+.input-block table td:first-child {
+    padding-left: 5px;
+    padding-right: 4px;
+    text-align: right;
+}
+
+.input-block table td:nth-child(2) {
+    padding-left: 5px;
+    min-width: 40px;
+}
+
+.input-block table td:last-child {
     padding-right: 5px;
-    text-align: left;
+    min-width: 40px;
+}
+
+.input-block table tr.head {
+    height: 20px;
+}
+
+.input-block table tr.head td {
+    text-align: center;
+    font-weight: 600;
 }
 
 .input-block input {
-    width: 100%;
+    width: 21px;
+    box-sizing: content-box;
 }
 
 .input-block input.error {
@@ -169,6 +202,7 @@ body {
     content: "✔";
 }
 
+/* History */
 .result table {
     border: 2px solid #4d4d4d;
     width: 100%;
@@ -179,12 +213,30 @@ body {
     font-weight: 600;
 }
 
+.result tr th {
+    background-color: #5d5d5d;
+    color: white;
+    vertical-align: middle;
+}
+
+.result tr:first-child th {
+    height: 30px;
+}
+
 .result td, .result th {
     border-right: 1px solid #4d4d4d;
     border-bottom: 1px solid #4d4d4d;
     min-width: 30px;
     white-space: nowrap;
     text-align: center;
+    vertical-align: middle;
+}
+
+.result td {
+    background-color: #6d6d6d;
+    color: #dedede;
+    vertical-align: middle;
+    height: 25px;
 }
 
 .result th:first-child {
@@ -192,7 +244,16 @@ body {
 }
 
 .content.result {
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
     height: auto;
+}
+
+button.back {
+    background-color: #5d5d5d;
+    border: 1px solid #dedede;
+    color: white;
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
 }
