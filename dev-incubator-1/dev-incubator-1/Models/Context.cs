@@ -10,6 +10,9 @@ namespace dev_incubator_1.Models
     {
         public DbSet<Point> Points { get; set; }
         public DbSet<UserData> UserDatas { get; set; }
-        public Context() : base("DefaultConnection") { }
+        public Context() : base("DefaultConnection") 
+        {
+            Database.SetInitializer<Context>(new DropCreateDatabaseIfModelChanges<Context>());
+        }
     }
 }
